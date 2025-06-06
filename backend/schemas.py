@@ -17,3 +17,23 @@ class UserRead(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+class AssetBase(BaseModel):
+    name: str
+    owner: str
+
+
+class AssetCreate(AssetBase):
+    pass
+
+
+class AssetUpdate(AssetBase):
+    pass
+
+
+class AssetRead(AssetBase):
+    id: int
+
+    class Config:
+        orm_mode = True

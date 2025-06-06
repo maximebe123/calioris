@@ -18,3 +18,11 @@ class User(Base):
     organization_id = Column(Integer, ForeignKey('organizations.id'))
 
     organization = relationship('Organization', back_populates='users')
+
+
+class Asset(Base):
+    __tablename__ = 'assets'
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, nullable=False)
+    owner = Column(String, nullable=False)
+
