@@ -18,7 +18,7 @@ export default function AuthForm({
   return (
     <form onSubmit={onSubmit} className="auth-form">
       <h2>{title}</h2>
-      {error && <div className="error">{error}</div>}
+      {error && <div className="error" aria-live="assertive">{error}</div>}
       {children}
       <button type="submit">{submitLabel}</button>
     </form>
