@@ -34,3 +34,32 @@
 .asset-table tr:nth-child(odd) {
   background-color: var(--color-soft-lavender);
 }
+
+.nav {
+  background: var(--color-deep-indigo);
+  padding: 0.5rem;
+}
+
+.nav a {
+  color: var(--color-pearl-white);
+  margin-right: 1rem;
+  text-decoration: none;
+}
+
+.auth-form {
+  max-width: 300px;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-form input,
+.auth-form button {
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+}
+
+.error {
+  color: red;
+  margin-bottom: 0.5rem;
+}

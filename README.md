@@ -37,3 +37,13 @@ npm install
 npm run dev
 ```
 
+
+To start the backend API server:
+
+```bash
+cd backend
+pip install -r requirements.txt
+uvicorn backend.main:app --reload
+```
+
+The backend exposes `/signup` and `/login` endpoints for account creation and authentication.

@@ -1,46 +1,22 @@
-import { useState } from 'react'
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import Home from './Home'
+import Login from './Login'
+import Signup from './Signup'
 import './App.css'
 
-interface Asset {
-  id: number
-  name: string
-  owner: string
-}
-
-function App() {
-  const [assets] = useState<Asset[]>([
-    { id: 1, name: 'Laptop - MacBook Pro', owner: 'Alice' },
-    { id: 2, name: 'Server - API 01', owner: 'Bob' },
-    { id: 3, name: 'Switch - Cisco 24p', owner: 'IT Dept' },
-  ])
-
+export default function App() {
   return (
-    <div className="container">
-      <header className="header">
-        <h1>Calioris Assets</h1>
-      </header>
-      <main>
-        <table className="asset-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Owner</th>
-            </tr>
-          </thead>
-          <tbody>
-            {assets.map((asset) => (
-              <tr key={asset.id}>
-                <td>{asset.id}</td>
-                <td>{asset.name}</td>
-                <td>{asset.owner}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </main>
-    </div>
+    <BrowserRouter>
+      <nav className="nav">
+        <Link to="/">Home</Link>
+        <Link to="/login">Login</Link>
+        <Link to="/signup">Sign Up</Link>
+      </nav>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
-
-export default App
