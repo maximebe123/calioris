@@ -99,3 +99,52 @@ def delete_asset(asset_id: int, db: Session = Depends(get_db)):
     db.delete(asset)
     db.commit()
     return {"detail": "deleted"}
+
+
+@app.post("/stock_items", response_model=schemas.StockItemRead)
+def create_stock_item(item: schemas.StockItemCreate, db: Session = Depends(get_db)):
+    db_item = models.StockItem(
+        name=item.name, quantity=item.quantity, location=item.location
+    )
+    db.add(db_item)
+    db.commit()
+    db.refresh(db_item)
+    return db_item
+
+
+@app.get("/stock_items", response_model=List[schemas.StockItemRead])
+def list_stock_items(db: Session = Depends(get_db)):
+    return db.query(models.StockItem).all()
+
+
+@app.get("/stock_items/{item_id}", response_model=schemas.StockItemRead)
+def get_stock_item(item_id: int, db: Session = Depends(get_db)):
+    item = db.query(models.StockItem).filter(models.StockItem.id == item_id).first()
+    if not item:
+        raise HTTPException(status_code=404, detail="Item not found")
+    return item
+
+
+@app.put("/stock_items/{item_id}", response_model=schemas.StockItemRead)
+def update_stock_item(
+    item_id: int, item_update: schemas.StockItemUpdate, db: Session = Depends(get_db)
+):
+    item = db.query(models.StockItem).filter(models.StockItem.id == item_id).first()
+    if not item:
+        raise HTTPException(status_code=404, detail="Item not found")
+    item.name = item_update.name
+    item.quantity = item_update.quantity
+    item.location = item_update.location
+    db.commit()
+    db.refresh(item)
+    return item
+
+
+@app.delete("/stock_items/{item_id}")
+def delete_stock_item(item_id: int, db: Session = Depends(get_db)):
+    item = db.query(models.StockItem).filter(models.StockItem.id == item_id).first()
+    if not item:
+        raise HTTPException(status_code=404, detail="Item not found")
+    db.delete(item)
+    db.commit()
+    return {"detail": "deleted"}

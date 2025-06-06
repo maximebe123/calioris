@@ -26,3 +26,11 @@ class Asset(Base):
     name = Column(String, nullable=False)
     owner = Column(String, nullable=False)
 
+
+class StockItem(Base):
+    __tablename__ = 'stock_items'
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, nullable=False)
+    quantity = Column(Integer, nullable=False)
+    location = Column(String, nullable=True)
+
