@@ -47,3 +47,4 @@ uvicorn backend.main:app --reload
 ```
 
 The backend exposes `/signup` and `/login` endpoints for account creation and authentication.
+It also exposes CRUD endpoints under `/assets` to manage assets.
