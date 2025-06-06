@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import AuthForm from './components/AuthForm'
 
 export default function Login() {
   const [email, setEmail] = useState('')
@@ -22,9 +23,12 @@ export default function Login() {
   }
 
   return (
-    <form onSubmit={submit} className="auth-form">
-      <h2>Login</h2>
-      {error && <div className="error">{error}</div>}
+    <AuthForm
+      title="Login"
+      onSubmit={submit}
+      error={error}
+      submitLabel="Login"
+    >
       <input
         type="email"
         placeholder="Email"
@@ -39,7 +43,6 @@ export default function Login() {
         onChange={(e) => setPassword(e.target.value)}
         required
       />
-      <button type="submit">Login</button>
-    </form>
+    </AuthForm>
   )
 }

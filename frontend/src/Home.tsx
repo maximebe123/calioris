@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import AssetForm from './components/AssetForm'
+import AssetRow from './components/AssetRow'
 
 interface Asset {
   id: number
@@ -79,28 +81,15 @@ export default function Home() {
         <h1>Calioris Assets</h1>
       </header>
       <main>
-        <form onSubmit={submit} className="asset-form">
-          <input
-            type="text"
-            placeholder="Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-          <input
-            type="text"
-            placeholder="Owner"
-            value={owner}
-            onChange={(e) => setOwner(e.target.value)}
-            required
-          />
-          <button type="submit">{editing ? 'Update' : 'Add'}</button>
-          {editing && (
-            <button type="button" onClick={cancelEdit}>
-              Cancel
-            </button>
-          )}
-        </form>
+        <AssetForm
+          name={name}
+          owner={owner}
+          editing={!!editing}
+          onNameChange={setName}
+          onOwnerChange={setOwner}
+          onSubmit={submit}
+          onCancel={cancelEdit}
+        />
         <table className="asset-table">
           <thead>
             <tr>
@@ -112,19 +101,12 @@ export default function Home() {
           </thead>
           <tbody>
             {assets.map((asset) => (
-              <tr key={asset.id}>
-                <td>{asset.id}</td>
-                <td>{asset.name}</td>
-                <td>{asset.owner}</td>
-                <td>
-                  <button type="button" onClick={() => startEdit(asset)}>
-                    Edit
-                  </button>
-                  <button type="button" onClick={() => remove(asset.id)}>
-                    Delete
-                  </button>
-                </td>
-              </tr>
+              <AssetRow
+                key={asset.id}
+                asset={asset}
+                onEdit={startEdit}
+                onDelete={remove}
+              />
             ))}
           </tbody>
         </table>
