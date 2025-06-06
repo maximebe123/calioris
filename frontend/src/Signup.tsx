@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import AuthForm from './components/AuthForm'
 
 export default function Signup() {
   const [email, setEmail] = useState('')
@@ -23,9 +24,12 @@ export default function Signup() {
   }
 
   return (
-    <form onSubmit={submit} className="auth-form">
-      <h2>Create Account</h2>
-      {error && <div className="error">{error}</div>}
+    <AuthForm
+      title="Create Account"
+      onSubmit={submit}
+      error={error}
+      submitLabel="Sign Up"
+    >
       <input
         type="email"
         placeholder="Email"
@@ -47,7 +51,6 @@ export default function Signup() {
         onChange={(e) => setOrganization(e.target.value)}
         required
       />
-      <button type="submit">Sign Up</button>
-    </form>
+    </AuthForm>
   )
 }
