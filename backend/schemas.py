@@ -37,3 +37,24 @@ class AssetRead(AssetBase):
 
     class Config:
         orm_mode = True
+
+
+class StockItemBase(BaseModel):
+    name: str
+    quantity: int
+    location: Optional[str] = None
+
+
+class StockItemCreate(StockItemBase):
+    pass
+
+
+class StockItemUpdate(StockItemBase):
+    pass
+
+
+class StockItemRead(StockItemBase):
+    id: int
+
+    class Config:
+        orm_mode = True
