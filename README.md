@@ -27,3 +27,13 @@
 
 > 🎨 Style: Minimal, elegant, calm. Inspired by astronomy, clarity & structure.
 
+## 🚀 Getting Started
+
+To start the front-end development server:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
