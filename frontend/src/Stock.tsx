@@ -40,9 +40,7 @@ export default function Stock() {
         const updated = await res.json()
         setItems(items.map((i) => (i.id === updated.id ? updated : i)))
         setEditing(null)
-        setName('')
-        setQuantity(0)
-        setLocation('')
+        resetForm()
       }
     } else {
       const res = await fetch('/stock_items', {
